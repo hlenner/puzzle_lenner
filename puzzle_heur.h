@@ -1,7 +1,8 @@
 #ifndef PUZZLE_HEUR_H
 #define PUZZLE_HEUR_H
+#include <cmath>
 
-
+using namespace std;
 class PuzzleHeuristic
 {
  public:
@@ -10,5 +11,15 @@ class PuzzleHeuristic
 
 
 // Define actual Heuristic Classes here
-
+class ManhattanHeuristic: public PuzzleHeuristic
+{
+ public:
+ int compute(int *tiles, int size);
+ 	
+};
+class OutOfPlaceHeuristic: public PuzzleHeuristic
+{
+ public:
+ int compute(int *tiles, int size);
+};
 #endif
