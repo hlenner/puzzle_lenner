@@ -4,7 +4,7 @@
 
 /**
  * PMMinList implements a sorted list of PuzzleMoves
- * based on their f-score (from smallest to largest)
+ * based on their f-score (smallest to largest)
  */
 class PMMinList 
 {
