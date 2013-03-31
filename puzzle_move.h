@@ -7,6 +7,7 @@
 class PuzzleMove
 {
  public:
+
   // Constructor for starting Board of an A* search
   PuzzleMove(Board &b);
 
@@ -23,9 +24,6 @@ class PuzzleMove
   bool operator==(const PuzzleMove& p) const;
 
   //**** Add any other member functions you think appropriate
-
-
-
 
 
   // Data members can be public
