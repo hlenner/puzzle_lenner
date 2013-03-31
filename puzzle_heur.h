@@ -10,7 +10,7 @@ class PuzzleHeuristic
 };
 
 
-// Define actual Heuristic Classes here
+// Define Heuristic Classes here
 class ManhattanHeuristic: public PuzzleHeuristic
 {
  public:

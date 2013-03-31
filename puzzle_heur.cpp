@@ -29,7 +29,7 @@ int OutOfPlaceHeuristic:: compute(int *tiles, int size){
   	int number=0;
 	for (int i=0; i<size; i++){
 	 if (tiles[i]!=i && tiles[i] !=0){
-	 //cout << tiles[i] << endl;
+	
 	 	number++;
 	 }
 	}
