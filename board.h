@@ -64,6 +64,4 @@ struct BoardLessThan :
   }
 };
 
-
-
 #endif
