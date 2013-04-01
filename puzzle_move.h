@@ -29,6 +29,7 @@ class PuzzleMove
   // Data members can be public
  public:
   int tileMove_;  // tile moved to reach the Board b
+  int f_;
   Board *b_;      // Pointer to a board representing the updated state
   int g_;         // distance from the start board
   int h_;         // heuristic distance to the goal

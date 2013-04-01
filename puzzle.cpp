@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     cerr << "Usage: ./puzzle size initMoves seed" << endl;
     return 1;
   }
-
+  
   int size, initMoves, seed;
 
   size = atoi(argv[1]);
@@ -24,26 +24,38 @@ int main(int argc, char *argv[])
   Board b(size,initMoves,seed);
   cout << b;
 
-  //**** Implement the gameplay here
   int y;
- 
-  while (b.solved()==false){
-  //ManhattanHeuristic *Manhattan = new ManhattanHeuristic();
-  //OutOfPlaceHeuristic *Place = new OutOfPlaceHeuristic();
+
+  ManhattanHeuristic *Manhattan = new ManhattanHeuristic();
+  OutOfPlaceHeuristic *Place = new OutOfPlaceHeuristic();
   
-  //cout << "Manhattan: " << Manhattan->compute(b.getTiles(), b.getSize()) << endl;
-  //cout << "Out Of Place: " << Place->compute(b.getTiles(), b.getSize()) << endl;
-  
+  cout << "Manhattan: " << Manhattan->compute(b.getTiles(), b.getSize()) << endl;
+  cout << "Out Of Place: " << Place->compute(b.getTiles(), b.getSize()) << endl;
+  while (!b.solved()){
   cout << "Enter tile number to move or -1 for a cheat:  " << endl;
   cin >> y;
+  int x;
     if (y == -1){
- 
-  }
+    
+    cout << "type 1 for Manhattan, 2 for Out-of-Place Heuristic" << endl;
+    cin >> x;
+    }
+    if (x==1){
+    	PuzzleHeuristic *heur = new ManhattanHeuristic();
+    	PuzzleSolver p(b);
+    	p.run(heur);
+    	cout << "Manhattan: " << heur->compute(b.getTiles(), b.getSize()) << endl;
+    }
+    else if (x==2){
+        PuzzleHeuristic *oop = new OutOfPlaceHeuristic();
+        PuzzleSolver p(b);
+    	p.run(oop);
+    	cout << "OutOfPlace: " << oop->compute(b.getTiles(), b.getSize()) << endl;
+    }
+  
   else{
   b.move(y);
+   }
   }
-cout << b;
-}
-
-  return 0;
+   return 0;
 }

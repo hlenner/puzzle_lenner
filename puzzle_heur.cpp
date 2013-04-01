@@ -2,7 +2,16 @@
 #include <cmath>
 #include <iostream>
 
-
+int OutOfPlaceHeuristic:: compute(int *tiles, int size){
+  	int number=0;
+	for (int i=0; i<size; i++){
+	 if (tiles[i]!=i && tiles[i] !=0){
+	
+	 	number++;
+	 }
+	}
+	return number;
+}
 int ManhattanHeuristic:: compute(int *tiles, int size)
 {
  	int h_ = 0;
@@ -25,14 +34,5 @@ int ManhattanHeuristic:: compute(int *tiles, int size)
   	}
   	return h_;
 } 
-int OutOfPlaceHeuristic:: compute(int *tiles, int size){
-  	int number=0;
-	for (int i=0; i<size; i++){
-	 if (tiles[i]!=i && tiles[i] !=0){
-	
-	 	number++;
-	 }
-	}
-	return number;
-}
+
  

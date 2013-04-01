@@ -25,31 +25,24 @@ PMMinList::~PMMinList()
  */
 void PMMinList::push(PuzzleMove* pm)
 {
-  bool isFound = false;
   std::list<PuzzleMove*>::iterator it = slist_.begin();
-  if (slist_.empty()){
-  	cout << "empty closed list" << endl;
-  	slist_.insert(it, pm);
-  }
-  else{
-  for (it = slist_.begin();it!=slist_.end(); ++it){
-  if ((((*it)->g_) + ((*it)->h_)) > (pm->g_ + pm->h_)){
-  	slist_.insert(it, pm);
- 	}
-  }
-  if ((((*it)->g_) + ((*it)->h_)) == (pm->g_ + pm->h_)){
-  	++it;
-  	slist_.insert(it, pm);
-  }
-  if (!isFound){
-  	slist_.insert(slist_.end(), pm);
-        }
-  }
+
+  for (; it!=slist_.end(); ++it){
+  	if (*pm < **it)
+  		{
+  		slist_.insert(it, pm);
+  		return;
+  		}
+  	}
+  slist_.insert(it, pm);
+ }
+ 
   //---- Add your implementation to iterate through the list
   //---- to find the correct location to insert pm and then
   //---- use the insert() method of std::List to insert it
   //---- See http://www.cplusplus.com/reference/list/list/insert/
-}
+
+
 
 /**
  * Adds the value val to the internal list in sorted

@@ -125,10 +125,7 @@ Board::Board(int *tiles, int size)
 /** Default destructor. provide documentation here */
 Board::~Board()
 {
-
-  /*
-   * IMPLEMENT ME
-  */
+	delete tiles_;
 }
 
 bool Board::operator<(const Board& rhs) const
@@ -186,25 +183,26 @@ bool Board::operator!=(const Board& rhs) const{
 }
 }
 
-bool Board:: operator==(const Board& rhs) const{
-	{
+bool Board:: operator==(const Board& rhs) const
+{
   if(size_ < rhs.size_){
     return false;
   }
-  bool val = true;
+
   for(int i=0; i < size_; i++){
-    if(tiles_[i] == rhs.tiles_[i]){
-       //val = true;
-       //break;
+    if(tiles_[i] != rhs.tiles_[i]){
+       return false;
      }
-     else{
-     	val=false;
-     	break;
      }
-  }
-  return val;
+     return true;
 }
-}
+/*Board& Board::operator=(const Board& rhs) {
+	size_ = rhs.size_;
+	for (int i=0; i<size_; i++){
+		tiles_[i] = rhs.tiles_[i];
+		}
+	return *this;
+}*/
 bool Board::solved(){
 	for(int i=0; i<size_; i++){
 		if (tiles_[i]==i){
@@ -235,6 +233,7 @@ int cols=sqrt(size_);
   	}
   } 
   if ((index-cols)>=0 && tiles_[index-cols]==0 ){
+  		
   		tiles_[index-cols]=tile;
   		tiles_[index]=0;
   }
@@ -248,7 +247,7 @@ int cols=sqrt(size_);
   		tiles_[index]=0;
 
   }
-  if ((index+1) % cols !=0 && tiles_[index+1] ==0){
+  if ((index+1) % cols !=0 && tiles_[index+1] == 0){
 
   		tiles_[index+1]=tile;
   		tiles_[index]=0;
@@ -258,37 +257,16 @@ int cols=sqrt(size_);
 std::map<int, Board*> Board:: potentialMoves()
 {
     map<int, Board*> mymap;
-    int dim = sqrt(size_);
-    int blankLoc;
-    
     for (int i=0; i<size_; i++){
-    	if (tiles_[i]==0){
-    		blankLoc =i;
-    	}
-    }
-    if (blankLoc-dim >= 0)//north
-    {
-    	Board *board = new Board(tiles_, size_);
-    	board->move(blankLoc-dim);
-    	mymap[tiles_[blankLoc-dim]]=board;
-    }
-    if (blankLoc+dim < size_)//south
-    {
-    	Board *board = new Board(tiles_, size_);
-    	board->move(blankLoc+dim);
-    	mymap[tiles_[blankLoc+dim]]=board;
-    }
-    if (blankLoc % dim != 0)//east
-    {
-    	Board *board = new Board(tiles_, size_);
-    	board->move(blankLoc-1);
-    	mymap[tiles_[blankLoc-1]]=board;
-    }
-    if (blankLoc % dim != dim-1 )//west
-    {
-    	Board *board = new Board(tiles_, size_);
-    	board->move(blankLoc+1);
-    	mymap[tiles_[blankLoc+1]]=board;
+    	Board temp(tiles_, size_);
+    	temp.move(i);
+    	for (int j=0; j<size_; j++){
+    		if (temp.tiles_[j] != tiles_[j]){
+    			if(tiles_[j]!=0){
+    				mymap[tiles_[j]] = new Board(temp.tiles_, temp.size_);
+    			}
+    		}
+    	  }
     }
  return mymap;
 }

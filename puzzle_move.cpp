@@ -16,8 +16,8 @@ PuzzleMove::PuzzleMove(int tile, Board *b, PuzzleMove *parent)
 }
 PuzzleMove::~PuzzleMove()
 {
-	delete [] prev_;
-	delete [] b_;
+	//delete  prev_;
+	delete  b_;
 }
 // Compare to PuzzleMoves based on f distance (needed for priority queue)
 bool PuzzleMove::operator<(const PuzzleMove& p) const
