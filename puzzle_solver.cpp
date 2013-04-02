@@ -15,7 +15,7 @@ PuzzleSolver::PuzzleSolver(const Board &b) : b_(b) {
 }
 PuzzleSolver::~PuzzleSolver()
 {
-
+	
 }
 int PuzzleSolver::getNumExpansions()
 {
@@ -41,7 +41,9 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
     closedlist.insert(myb);
 
     //printClosedSet(closedlist);
-    openlist.push(new PuzzleMove(b_));
+    PuzzleMove *first = new PuzzleMove(b_);
+    openlist.push(first);
+    garbage.push_back(first);
     //cout << "one" << endl;
 //PuzzleMove *move = start;
 //move->h_ = ph->compute(move->b_->getTiles(), move->b_->getSize());
@@ -49,8 +51,7 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
     while(!openlist.empty()) {
         move = openlist.top();
         move->h_ = ph->compute(move->b_->getTiles(), move->b_->getSize());
-
-        garbage.push_back(move);
+        //garbage.push_back(move);
         closedlist.insert(move->b_);
         openlist.pop();
         if (move->b_->solved()) {
@@ -68,11 +69,16 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
             cout << "" <<endl;
             cout << "(Expansions = " << expansions_ << " ) " << endl;
             numSolutions= solution.size()-1;
+            
+            for (int i=0; i<garbage.size(); i++){
+            	delete garbage[i];
+            }
+            delete myb;
             return numSolutions;
           
         }
         else {
-            map<int, Board*> tempmap= move->b_->potentialMoves();
+            map<int, Board*> tempmap = move->b_->potentialMoves();
             for(map<int, Board*>::iterator it = tempmap.begin(); it != tempmap.end(); ++it) {
                 if (closedlist.find(it->second) == closedlist.end()) {
                     PuzzleMove *s = new PuzzleMove(it->first, it->second, move);
@@ -80,12 +86,15 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
                     closedlist.insert(s->b_);
                     openlist.push(s);
                     expansions_++;
-                }   
+                    garbage.push_back(s);
+                } 
+                delete it->second; 
             }
+            
         }  
     }
     garbage.clear();
-    delete [] myb;
+
     cout << solution.size() << endl;
     return solution.size();
 }

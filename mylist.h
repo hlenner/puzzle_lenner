@@ -25,7 +25,7 @@ public:
 	void print();
 	void clearList();
 	T& operator[](int lhs);
-	//void clear();
+
 private:
 	T *items;	
 	int _size;
@@ -42,14 +42,21 @@ Mylist<T>::Mylist()
 template <typename T>
 Mylist<T>:: ~Mylist()
 {
-	//clear();
+
 	delete []items;
 }
+/**tests the size of the list 
+*and makes sure its big enough before adding 
+*the item to the end of it
+
+
+
+*/
+
 template <typename T>
-void Mylist<T>:: push_back(T x)//this function tests the size of the list and makes sure its big enough before adding the item to the end of it
-{
-	if (_size==capacity){
-		capacity=capacity*2;
+void Mylist<T>:: push_back(T x){
+	if (_size==capacity){/**tests if the size needs to be increased*/
+		capacity=capacity*2;/**doubles*/
 		T* moreitems= new T[capacity];
 		for (int i = 0; i<_size; i++){
 				moreitems[i]=items[i];
@@ -62,35 +69,36 @@ void Mylist<T>:: push_back(T x)//this function tests the size of the list and ma
 		items[_size++] = x;	
 	}
 }
+
 template <typename T>
-int Mylist<T>:: size() const//accessor function
+int Mylist<T>:: size() const/**accessor function returning size*/
 {
 	return _size;
 }
 template <typename T>
-T& Mylist<T>:: at(int loc) const//returns the item at the location given in parameters 
+T& Mylist<T>:: at(int loc) const/**returns the item at the location given in parameters */
 {
 	return items[loc];
 }
 template <typename T>
-bool Mylist<T>::remove(T val)//removes the item in the list matching val if it exists. returns true on success, false on failure
+bool Mylist<T>::remove(T val)/**removes the item in the list matching val if it exists. returns true on success, false on failure*/
 {
 	for(int i=0; i<_size; i++)
 	{
-		if (items[i]==val)
+		if (items[i]==val)/**looks for the item that is a match to the val*/
 		{
 			for(int j=i; j <_size;j++)
 			{
-				items[j]=items[j+1];//moves all other items up by one index
+				items[j]=items[j+1];/**moves all other items up by one index*/
 				}
-				_size--;//decrements size
+				_size--;/**decrements size*/
 				return true;
 		}
 	}
 	return false;
 }
 template <typename T>
-void Mylist<T>::print()//prints out the lists in the item
+void Mylist<T>::print()/**prints out the lists in the item*/
 {
 for (int i=0; i<size(); i++){
 	cout << items[i]<< endl;

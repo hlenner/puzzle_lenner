@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
 /**
 tests the number of arguments
 */
-  if(argc < 3){
+
+  if(argc <=3 || argc > 4 ){
     cerr << "Usage: ./puzzle size initMoves seed" << endl;
     return 1;
   }
@@ -49,7 +50,7 @@ cout << endl;
     	PuzzleSolver p(b);
     	p.run(heur);
     	//cout << "Manhattan: " << heur->compute(b.getTiles(), b.getSize()) << endl;
-    	delete [] heur;
+    	delete  heur;
     }
   
   else{
