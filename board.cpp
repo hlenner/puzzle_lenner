@@ -111,7 +111,10 @@ Board::Board()
 Board::Board(const Board &b)
 {
 	size_= b.size_;
-	tiles_=b.tiles_;
+	tiles_ = new int[size_];
+	for (int i=0;i<size_; i++){
+		tiles_[i]=b.tiles_[i];
+	}
 }
 Board::Board(int *tiles, int size)
 {
@@ -138,6 +141,7 @@ bool Board::operator<(const Board& rhs) const
     if(tiles_[i] < rhs.tiles_[i]){
        //val = true;
        //break;
+       return true;
   
      }
      else if(tiles_[i] > rhs.tiles_[i]){
@@ -155,10 +159,18 @@ std::ostream& operator<<(std::ostream &os, const Board &b){
 	//os << "Columns: " << y << endl;
 	os << setw(3) << b.tiles_[0] ;
 	for (int i=1; i<b.size_; i++){
+	if (b.tiles_[i]==0){
+		os << setw(3) << "  ";
+		if ((i)%y==y-1){
+			os << endl;
+			}
+	}
+	else{
 		os << setw(3) <<b.tiles_[i] ;
 		if ((i+1)%y==0){
 			os << endl;
 			}
+	}
 	}
 	return os;
 }
@@ -211,7 +223,7 @@ bool Board::solved(){
 		return false;
 		}
 	}
-	cout << "You win!" << endl;
+	//cout << "You win!" << endl;
 	return true;
 }
 int* Board::getTiles(){
@@ -237,21 +249,22 @@ int cols=sqrt(size_);
   		tiles_[index-cols]=tile;
   		tiles_[index]=0;
   }
- if (index % cols != 0 && tiles_[index-1] ==0){
+ else if (index % cols != 0 && tiles_[index-1] ==0){
   		tiles_[index-1]=tile;
   		tiles_[index]=0;
   }
-  if((index+cols)<=(cols*cols-1) && tiles_[index+cols]==0){
+  else if((index+cols)<=(cols*cols-1) && tiles_[index+cols]==0){
 
   		tiles_[index+cols]=tile;
   		tiles_[index]=0;
 
   }
-  if ((index+1) % cols !=0 && tiles_[index+1] == 0){
+  else if ((index+1) % cols !=0 && tiles_[index+1] == 0){
 
   		tiles_[index+1]=tile;
   		tiles_[index]=0;
   		}
+ 
   
 }
 std::map<int, Board*> Board:: potentialMoves()
