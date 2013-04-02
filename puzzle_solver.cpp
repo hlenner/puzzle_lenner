@@ -85,6 +85,7 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
         }  
     }
     garbage.clear();
+    delete [] myb;
     cout << solution.size() << endl;
     return solution.size();
 }

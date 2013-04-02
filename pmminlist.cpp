@@ -8,7 +8,6 @@ PMMinList::PMMinList() : slist_()
 {
 
 }
-
 /**
  * Destructor
  */
@@ -36,13 +35,6 @@ void PMMinList::push(PuzzleMove* pm)
   	}
   slist_.insert(it, pm);
  }
- 
-  //---- Add your implementation to iterate through the list
-  //---- to find the correct location to insert pm and then
-  //---- use the insert() method of std::List to insert it
-  //---- See http://www.cplusplus.com/reference/list/list/insert/
-
-
 
 /**
  * Adds the value val to the internal list in sorted

@@ -1,6 +1,15 @@
 #include "puzzle_heur.h"
 #include <cmath>
 #include <iostream>
+/**computes heuristics of the boards*/
+
+/**computes the out of place heuristic of the board
+* takes in tile pointer and size of the board
+@pre None
+@post the out of place heuristic, "h" value is calculated
+@param tile pointer and size of the specified board
+@return the out of place heuristic value
+*/
 
 int OutOfPlaceHeuristic:: compute(int *tiles, int size){
   	int number=0;
@@ -12,6 +21,13 @@ int OutOfPlaceHeuristic:: compute(int *tiles, int size){
 	}
 	return number;
 }
+/**computes the Manhattan heuristic of the board
+* takes in tile pointer and size of the board
+@pre None
+@post the manhattan heuristic, "h" value is calculated
+@param tile pointer and size of the specified board
+@return the manhattan heuristic value
+*/
 int ManhattanHeuristic:: compute(int *tiles, int size)
 {
  	int h_ = 0;
@@ -33,6 +49,5 @@ int ManhattanHeuristic:: compute(int *tiles, int size)
   		}
   	}
   	return h_;
-} 
-
+}
  

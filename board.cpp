@@ -5,6 +5,7 @@
 #include <cmath>
 #include <cstdlib>
 #include "board.h"
+
 using namespace std;
 
 
@@ -128,7 +129,7 @@ Board::Board(int *tiles, int size)
 /** Default destructor. provide documentation here */
 Board::~Board()
 {
-	delete tiles_;
+	delete []tiles_;
 }
 
 bool Board::operator<(const Board& rhs) const
@@ -136,7 +137,7 @@ bool Board::operator<(const Board& rhs) const
   if(size_ < rhs.size_){
     return true;
   }
-
+bool val = false;
   for(int i=0; i < size_; i++){
     if(tiles_[i] < rhs.tiles_[i]){
        //val = true;
@@ -149,7 +150,7 @@ bool Board::operator<(const Board& rhs) const
        return false;
      }
   }
-  return true;
+  return val;
 }
 std::ostream& operator<<(std::ostream &os, const Board &b){	
 	
@@ -230,7 +231,6 @@ int* Board::getTiles(){
 	return tiles_;
 }
 int Board::getSize(){
-
 	return size_;
 }
 void Board::move(int tile)
@@ -283,3 +283,4 @@ std::map<int, Board*> Board:: potentialMoves()
     }
  return mymap;
 }
+

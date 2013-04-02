@@ -4,6 +4,9 @@
 #include <iostream>
 #include <map>
 #include <functional>
+/**Creates a board and contains and 
+*implements basic functions 
+*of the puzzle game*/
 
 class Board
 {
@@ -40,18 +43,21 @@ class Board
   bool operator==(const Board& rhs) const;
   bool operator<(const Board& rhs) const;
   bool operator!=(const Board& rhs) const;
-  //Board& operator=(const Board& rhs);
   
   // Accessors
+  /**return pointer to the tiles of a given board*/
   int* getTiles();
+  /**return size of a given board*/
   int getSize();
   // Add any accessors
 
 
  private:
+ /**stores pointer to the tiles of a given board*/
   int *tiles_;
+  /**stores size of a given board*/
   int size_;
-  // Add Data members
+
 
 };
 

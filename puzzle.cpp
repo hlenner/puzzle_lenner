@@ -45,13 +45,11 @@ tests the number of arguments
   cin >> y;
 cout << endl;
     if (y == -1){
-    	/*PuzzleHeuristic *heur = new ManhattanHeuristic();
+    	PuzzleHeuristic *heur = new ManhattanHeuristic();
     	PuzzleSolver p(b);
     	p.run(heur);
-    	//cout << "Manhattan: " << heur->compute(b.getTiles(), b.getSize()) << endl;*/
-    	PuzzleHeuristic *oop = new OutOfPlaceHeuristic();
-    	PuzzleSolver p(b);
-    	p.run(oop);
+    	//cout << "Manhattan: " << heur->compute(b.getTiles(), b.getSize()) << endl;
+    	delete [] heur;
     }
   
   else{
