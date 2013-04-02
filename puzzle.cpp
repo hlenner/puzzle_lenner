@@ -40,7 +40,7 @@ tests the number of arguments
   while (!b.solved()){
   cout << b;
   cout << endl;
-  cout << "Enter tile number to move or -1 for a cheat:  " ;
+  cout << " Enter tile number to move or -1 for a cheat:  " ;
 
   cin >> y;
 cout << endl;
