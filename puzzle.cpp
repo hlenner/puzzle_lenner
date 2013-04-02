@@ -5,11 +5,17 @@
 #include "puzzle_heur.h"
 #include "puzzle_solver.h"
 #include <math.h>
+/**
+@mainpage Puzzle Implementation
 
+*/
 using namespace std;
 
 int main(int argc, char *argv[])
 {
+/**
+tests the number of arguments
+*/
   if(argc < 3){
     cerr << "Usage: ./puzzle size initMoves seed" << endl;
     return 1;
@@ -22,40 +28,35 @@ int main(int argc, char *argv[])
   seed = atoi(argv[3]);
 
   Board b(size,initMoves,seed);
-  cout << b;
+
 
   int y;
 
-  ManhattanHeuristic *Manhattan = new ManhattanHeuristic();
-  OutOfPlaceHeuristic *Place = new OutOfPlaceHeuristic();
+  //ManhattanHeuristic *Manhattan = new ManhattanHeuristic();
+  //OutOfPlaceHeuristic *Place = new OutOfPlaceHeuristic();
   
-  cout << "Manhattan: " << Manhattan->compute(b.getTiles(), b.getSize()) << endl;
-  cout << "Out Of Place: " << Place->compute(b.getTiles(), b.getSize()) << endl;
+  //cout << "Manhattan: " << Manhattan->compute(b.getTiles(), b.getSize()) << endl;
+ // cout << "Out Of Place: " << Place->compute(b.getTiles(), b.getSize()) << endl;
   while (!b.solved()){
-  cout << "Enter tile number to move or -1 for a cheat:  " << endl;
+  cout << b;
+  cout << endl;
+  cout << "Enter tile number to move or -1 for a cheat:  " ;
+
   cin >> y;
-  int x;
+cout << endl;
     if (y == -1){
-    
-    cout << "type 1 for Manhattan, 2 for Out-of-Place Heuristic" << endl;
-    cin >> x;
-    }
-    if (x==1){
     	PuzzleHeuristic *heur = new ManhattanHeuristic();
     	PuzzleSolver p(b);
     	p.run(heur);
-    	cout << "Manhattan: " << heur->compute(b.getTiles(), b.getSize()) << endl;
-    }
-    else if (x==2){
-        PuzzleHeuristic *oop = new OutOfPlaceHeuristic();
-        PuzzleSolver p(b);
-    	p.run(oop);
-    	cout << "OutOfPlace: " << oop->compute(b.getTiles(), b.getSize()) << endl;
+    	//cout << "Manhattan: " << heur->compute(b.getTiles(), b.getSize()) << endl;
     }
   
   else{
-  b.move(y);
+ 	 b.move(y);
    }
-  }
+   }
+   cout << b;
+   cout << "you win!" << endl;
+
    return 0;
 }
