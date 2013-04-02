@@ -12,7 +12,7 @@
 class PuzzleSolver
 {
  public:
-  //*** Typedef for the closed-list set.  Declare your closed list variable as
+  //*** Typedef for the closed-list set. Declare your closed list variable as
   //***   BoardSet closedlist; 
   //*** when you write your code for the run() funciton
   typedef std::set<Board *, BoardLessThan> BoardSet;

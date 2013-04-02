@@ -9,7 +9,7 @@
 using namespace std;
 
 
-/** Init a board of given size and scramble it with numInitMoves 
+/** Init board of given size and scramble it with numInitMoves 
  * by moving the space tile with a randomly chosen direction N, W, S, E
  * some of which may be invalid, in which case we skip that move 
  * 
@@ -263,9 +263,7 @@ int cols=sqrt(size_);
 
   		tiles_[index+1]=tile;
   		tiles_[index]=0;
-  		}
- 
-  
+  		} 
 }
 std::map<int, Board*> Board:: potentialMoves()
 {
@@ -283,4 +281,3 @@ std::map<int, Board*> Board:: potentialMoves()
     }
  return mymap;
 }
-

@@ -46,7 +46,7 @@ Mylist<T>:: ~Mylist()
 	delete []items;
 }
 /**tests the size of the list 
-*and makes sure its big enough before adding 
+*and make sure its big enough before adding 
 *the item to the end of it
 
 

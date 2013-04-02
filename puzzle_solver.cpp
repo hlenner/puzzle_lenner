@@ -88,9 +88,8 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
                     expansions_++;
                     garbage.push_back(s);
                 } 
-                delete it->second; 
-            }
-            
+                delete it->second;
+            }   
         }  
     }
     garbage.clear();

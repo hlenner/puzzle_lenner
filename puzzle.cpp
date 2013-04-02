@@ -14,8 +14,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 /**
-tests the number of arguments
-*/
+tests the number of arguments */
 
   if(argc <=3 || argc > 4 ){
     cerr << "Usage: ./puzzle size initMoves seed" << endl;

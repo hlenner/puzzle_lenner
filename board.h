@@ -4,7 +4,7 @@
 #include <iostream>
 #include <map>
 #include <functional>
-/**Creates a board and contains and 
+/**Creates board and contains and 
 *implements basic functions 
 *of the puzzle game*/
 
