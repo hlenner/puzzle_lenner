@@ -66,7 +66,7 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
                 cout << solution[i] << " ";
             }
             cout << "" <<endl;
-            cout << "(Expansions = " << expansions_ << " )" << endl;
+            cout << "(Expansions  = " << expansions_ << " )" << endl;
             numSolutions= solution.size()-1;
             return numSolutions;
           

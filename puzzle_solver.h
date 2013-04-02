@@ -34,6 +34,8 @@ class PuzzleSolver
   int getNumExpansions();
 
  private:
+ void printClosedSet(BoardSet &cl);
+ 
   Board b_;
   int expansions_;
   Mylist<int> solution;
