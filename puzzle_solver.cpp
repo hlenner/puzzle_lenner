@@ -70,7 +70,7 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
             cout << "(Expansions = " << expansions_ << " ) " << endl;
             numSolutions= solution.size()-1;
             
-            for (int i=0; i<garbage.size(); i++){
+            for (unsigned int i=0; i<garbage.size(); i++){
             	delete garbage[i];
             }
             delete myb;
