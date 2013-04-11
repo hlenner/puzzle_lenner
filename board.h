@@ -4,19 +4,16 @@
 #include <iostream>
 #include <map>
 #include <functional>
-/**Creates board and contains and 
-*implements basic functions 
-*of the puzzle game*/
 
 class Board
 {
  public:
-  /**  default constructor */
-  Board(); 
+  /** default constructor */
+  Board();
 
-  /** Init a board of given size and scramble it with numInitMoves 
-   * by moving the space tile with a randomly chosen direction N, W, S, E
-   * some of which may be invalid, in which case we skip that move */
+  /** Init a board of given size and scramble it with numInitMoves
+* by moving the space tile with a randomly chosen direction N, W, S, E
+* some of which may be invalid, in which case we skip that move */
   Board(int size, int numInitMoves, int seed);
 
   /** Copy constructor */
@@ -24,16 +21,16 @@ class Board
 
   /** Another kind of "copy" constructor */
   Board(int *tiles, int size); 
-
+  
   /** Destructor */
   ~Board();
 
   /** Swaps the blank with the specified tile */
-  void move(int tile);
+  bool move(int tile);
 
   /** Generate potential moves and returns new boards
-   * Key=tile, Value=Ptr to corresponding Board */
-  std::map<int, Board*> potentialMoves(); 
+* Key=tile, Value=Ptr to corresponding Board */
+  std::map<int, Board*> potentialMoves();
 
   /** Returns true if the board is solved, false otherwise */
   bool solved();
@@ -57,12 +54,11 @@ class Board
   int *tiles_;
   /**stores size of a given board*/
   int size_;
-
-
+  
 };
 
 // Leave this alone and don't touch it!
-struct BoardLessThan : 
+struct BoardLessThan :
   public std::binary_function<const Board*, const Board*,bool>
 {
   bool operator()(const Board *b1, const Board *b2) const

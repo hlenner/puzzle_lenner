@@ -3,10 +3,10 @@
 #include <list>
 
 /**
- * PMMinList implements a sorted list of PuzzleMoves
- * based on their f-score (smallest to largest)
- */
-class PMMinList 
+* PMMinList implements a sorted list of PuzzleMoves
+* based on their f-score (smallest to largest)
+*/
+class PMMinList
 {
  public:
   

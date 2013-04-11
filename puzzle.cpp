@@ -11,12 +11,12 @@
 */
 using namespace std;
 
-int main(int argc, char *argv[])
+/*int main(int argc, char *argv[])
 {
-/**
+*
 tests the number of arguments */
 
-  if(argc <=3 || argc > 4 ){
+  /*if(argc <=3 || argc > 4 ){
     cerr << "Usage: ./puzzle size initMoves seed" << endl;
     return 1;
   }
@@ -40,24 +40,25 @@ tests the number of arguments */
   while (!b.solved()){
   cout << b;
   cout << endl;
-  cout << " Enter tile number to move or -1 for a cheat:  " ;
+  cout << " Enter tile number to move or -1 for a cheat: " ;
 
   cin >> y;
 cout << endl;
     if (y == -1){
-    	PuzzleHeuristic *heur = new ManhattanHeuristic();
-    	PuzzleSolver p(b);
-    	p.run(heur);
-    	//cout << "Manhattan: " << heur->compute(b.getTiles(), b.getSize()) << endl;
-    	delete  heur;
+     PuzzleHeuristic *heur = new ManhattanHeuristic();
+     PuzzleSolver p(b);
+     p.run(heur);
+     //cout << "Manhattan: " << heur->compute(b.getTiles(), b.getSize()) << endl;
+     delete heur;
     }
   
   else{
- 	 b.move(y);
+  b.move(y);
    }
    }
    cout << b;
    cout << "you win!" << endl;
 
    return 0;
-}
+   */
+//}

@@ -9,13 +9,16 @@
 using namespace std;
 
 PuzzleSolver::PuzzleSolver(const Board &b) : b_(b) {
-//    b_=b;
+// b_=b;
     expansions_=0;
     numSolutions=-1;
 }
 PuzzleSolver::~PuzzleSolver()
 {
-	
+
+}
+Mylist<int>* PuzzleSolver:: getSolutions(){
+	return &solution;
 }
 int PuzzleSolver::getNumExpansions()
 {
@@ -71,7 +74,7 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
             numSolutions= solution.size()-1;
             
             for (unsigned int i=0; i<garbage.size(); i++){
-            	delete garbage[i];
+             delete garbage[i];
             }
             delete myb;
             return numSolutions;
@@ -87,10 +90,10 @@ int PuzzleSolver::run(PuzzleHeuristic *ph)
                     openlist.push(s);
                     expansions_++;
                     garbage.push_back(s);
-                } 
+                }
                 delete it->second;
-            }   
-        }  
+            }
+        }
     }
     garbage.clear();
 

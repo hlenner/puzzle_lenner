@@ -11,8 +11,8 @@ class PuzzleMove
   /** Constructor for starting Board of an A* search*/
   PuzzleMove(Board &b);
 
-  /** Constructor for subsequent search boards 
-  * (i.e. those returned by Board::potentialMoves() )*/
+  /** Constructor for subsequent search boards
+* (i.e. those returned by Board::potentialMoves() )*/
   PuzzleMove(int tile, Board *b, PuzzleMove *parent);
 
   /** Destructor*/
@@ -24,17 +24,17 @@ class PuzzleMove
   bool operator==(const PuzzleMove& p) const;
 
  public:
-  int tileMove_;  /** tile moved to reach the Board b*/
-  int f_;	   
-  Board *b_;      /** Pointer to a board representing the updated state*/
-  int g_;         /** distance from the start board*/
-  int h_;         /** heuristic distance to the goal*/
-  PuzzleMove *prev_;  /** Pointer to parent PuzzleMove*/
+  int tileMove_; /** tile moved to reach the Board b*/
+  int f_;	
+  Board *b_; /** Pointer to a board representing the updated state*/
+  int g_; /** distance from the start board*/
+  int h_; /** heuristic distance to the goal*/
+  PuzzleMove *prev_; /** Pointer to parent PuzzleMove*/
 };
 
 
 // Leave this alone and don't touch it!
-struct PuzzleMoveGreater : 
+struct PuzzleMoveGreater :
   public std::binary_function<const PuzzleMove*, const PuzzleMove*,bool>
 {
   bool operator()(const PuzzleMove *m1, const PuzzleMove *m2) const

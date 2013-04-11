@@ -13,7 +13,7 @@ class PuzzleSolver
 {
  public:
   //*** Typedef for the closed-list set. Declare your closed list variable as
-  //***   BoardSet closedlist; 
+  //*** BoardSet closedlist;
   //*** when you write your code for the run() funciton
   typedef std::set<Board *, BoardLessThan> BoardSet;
 
@@ -24,7 +24,7 @@ class PuzzleSolver
   ~PuzzleSolver();
 
   // Run the A* search returning -1 if no solution exists or
-  //  the number of moves in the solution
+  // the number of moves in the solution
   int run(PuzzleHeuristic *ph);
 
   //**** Return the solution List
@@ -32,13 +32,13 @@ class PuzzleSolver
 
   // Return how many expansions were performed in the search
   int getNumExpansions();
+  Mylist<int>* getSolutions();
 
  private:
  void printClosedSet(BoardSet &cl);
- 
+ Mylist<int> solution;
   Board b_;
   int expansions_;
-  Mylist<int> solution;
   int numSolutions;
   
   //**** Declare a List to store your solutions sequence of tiles to move

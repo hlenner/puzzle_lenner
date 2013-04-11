@@ -19,7 +19,7 @@ class ManhattanHeuristic: public PuzzleHeuristic/**Manhattan class inheriting fr
 {
  public:
  int compute(int *tiles, int size);/**compute Manhattan Heuristic of Boards*/
- 	
+ 
 };
 class OutOfPlaceHeuristic: public PuzzleHeuristic/**Out of Place class inheriting from PuzzleHeuristic*/
 {
