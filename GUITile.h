@@ -2,6 +2,7 @@
 #define GUITile_H
 #include <QGraphicsRectItem>
 #include <QGraphicsSimpleTextItem>
+#include <QObject>
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -12,7 +13,8 @@
 class MainWindow;
 
 
-class GUITile : public QGraphicsRectItem {
+class GUITile : public QObject, public QGraphicsRectItem {
+Q_OBJECT
 public:
     GUITile(int x, int y, int height, int width, int val, MainWindow *t,  QGraphicsScene *scene);
     void moveTile(Board *b, int tile, int size);
@@ -21,7 +23,7 @@ public:
     int number;
     QGraphicsSimpleTextItem *num;
     GUITile *blank; 
-    bool validMove(int size, int newsp);
+    bool exists(int tile);
 private:
 	
 };

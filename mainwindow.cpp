@@ -19,8 +19,10 @@ counter++;
     }
 }
 void MainWindow::MainWindowmoveTile(int number, GUITile *tile){
+
 	int s = size->text().toInt();
-	tile->moveTile( b, number,s);
+	
+	tile->moveTile(b, number,s);
 	cout <<"number: " <<number << endl;
 }
 void MainWindow:: AStar(){
@@ -61,6 +63,7 @@ void MainWindow:: AStar(){
 }
 void MainWindow:: newGameClicked(){
 	//bool good;
+	
 	int x = size->text().toInt();
 	if (x!= 9 && x!=16){
 		error->setText("Please enter a valid size");
@@ -82,7 +85,7 @@ void MainWindow:: newGameClicked(){
      		p.run(oops);
 	}
 	else{
-		error->setText("Please select a heuristic");
+		error->setText("Please select a heuristic if you want to cheat");
 	}
 	int dim = sqrt(x);
 	int *f = b->getTiles();
@@ -92,9 +95,14 @@ void MainWindow:: newGameClicked(){
     		GUITile *tile = new GUITile((50*(i%dim)),(50*(i/dim)),50,50,f[i],this, scene);
     		scene->addItem(tile);
     		tiles->push_back(tile);
-    		}
-    		}
     		
+    		}
+    	else{
+    	GUITile *tile = new GUITile((50*(i%dim)),(50*(i/dim)),50,50,f[i],this, scene);
+    		
+    		tiles->push_back(tile);	
+    	}
+    	}
     }
 }
 MainWindow::MainWindow() {
