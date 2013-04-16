@@ -1,12 +1,12 @@
 # Puzzle - Programming Assignments Private Repository
 ### Student Information
-  + Name: Tommy Trojan
-  + USC Email: ttrojan@usc.edu
-  + USC ID: 0123456789
+  + Name: Haley Lenner
+  + USC Email: lenner@usc.edu
+  + USC ID: 5038275290
 
 ### Compile & Run Instructions
 The grader should use the following procedure to compile and run the code:
-```shell
+qmake -project
+qmake
 make
-./puzzle size initMoves seed
-```
+./puzzle_lenner
