@@ -10,3 +10,7 @@ qmake -project
 qmake
 make
 ./puzzle_lenner
+
+Doxygen:
+doxygen -g config.txt
+doxygen config.txt
