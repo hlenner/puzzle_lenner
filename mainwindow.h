@@ -63,7 +63,6 @@ public slots:
  
     void newGameClicked();
     void AStar();
-    void handleTimer();
 };
 
 #endif // MAINWINDOW_H

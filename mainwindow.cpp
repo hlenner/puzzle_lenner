@@ -153,7 +153,6 @@ MainWindow::MainWindow() {
     //of our own - called handleTimer - which is in this same MainWindow class
     timer = new QTimer(this);
     timer->setInterval(5);
-    connect(timer, SIGNAL(timeout()), this, SLOT(handleTimer()));
     cheat = new QPushButton(view);
     cheat->setText("Cheat");
     cheat->setGeometry(10, 450, 75, 30);
@@ -189,7 +188,6 @@ MainWindow::MainWindow() {
     formlayout->addRow(tr("Enter seed: "), seed);
     formlayout->addRow(tr("Enter initial moves: "), moves);
     formlayout->addRow(tr("Console"), error);
-    QMessageBox *win = new QMessageBox();
 
 }
 /**method for showing everything within the view.
