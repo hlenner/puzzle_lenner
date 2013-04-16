@@ -20,6 +20,7 @@
 #include "board.h"
 #include "GUITile.h"
 #include "mylist.h"
+#include <QMessageBox>
 
 #define WINDOW_MAX_X 250
 #define WINDOW_MAX_Y 250
@@ -29,33 +30,34 @@ class MainWindow : public QWidget {
     Q_OBJECT
     
 public:
+/**constructor */
     explicit MainWindow();
-    ~MainWindow();
-    void show();
-    int counter;
+    ~MainWindow();/**destructor*/
+    void show();/**shows everything in the view*/
+    int counter;/**used to help with the timer*/
     
-    Mylist<GUITile*> *tiles;
-    QLineEdit *size;
-    void MainWindowmoveTile(int number, GUITile* tile);
-    Board *b;
+    Mylist<GUITile*> *tiles;/**tiles pointer of GUITile pointers*/
+    QLineEdit *size;/**size pointer*/
+    
+    void MainWindowmoveTile(int number, GUITile* tile);/**move tile*/
+    Board *b;/**board pointer*/
 
 private:
-    QGraphicsScene *scene;
-    QGraphicsView *view;
-    QTimer *timer;
-    QPushButton *button;
-    //QLineEdit *size;
-    QLineEdit *seed;
-    QLineEdit *moves;
-    QPushButton *quit;
-    QPushButton *cheat;
-    QListView *sequence;
-    QRadioButton *heur;
-    QRadioButton *oop;
-    QStandardItemModel *hint;
+    QGraphicsScene *scene;/**scene to display GUI*/
+    QGraphicsView *view;/**adds items to change display*/
+    QTimer *timer;/**timer to handle animating tiles*/
+    QPushButton *button;/**start button connected to newGame*/
+    QLineEdit *seed;/**randomization, user input*/
+    QLineEdit *moves;/**initial moves, user input*/
+    QPushButton *quit;/**quit button, exits out*/
+    QPushButton *cheat;/**cheat button, must */
+    QListView *sequence;/***/
+    QRadioButton *heur;/**manhattan heuristic button clicked to perform cheat*/
+    QRadioButton *oop;/**out of place heuristic button clicked to perform cheat*/
+    QStandardItemModel *hint;/**hint displayed in window, shows tiles to move in order to win*/
     //Board *board;
-    QListView *solution;
-    QLineEdit *error;
+    QListView *solution;/**helps display hint in window*/
+    QLineEdit *error;/**prints out different errors based on bad user input*/
 
 public slots:
  

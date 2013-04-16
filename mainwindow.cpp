@@ -6,25 +6,36 @@
 #include <QFormLayout>
 #include "puzzle_heur.h"
 #include "puzzle_solver.h"
+#include <QIntValidator>
 
-void MainWindow::handleTimer() {
-    counter++;
-    if (timer->isActive()==true) {
+/** A mainwindow class to implement qt for the PA4 puzzle game
+creates formlayouts, buttons, lines used for implementation, 
+performs heuristics, a* algorithm
 
-        timer->stop();
-        //button->setText("Start");
-    }
-    else {
+@author Haley Lenner
+*/
 
-    }
-}
+/**method for getting the board, number, and size to perform moveTile.
+
+@pre MousePressEvent refers to it
+@post
+@param number on the tile, the pointer to that tile
+@return none
+*/
 void MainWindow::MainWindowmoveTile(int number, GUITile *tile) {
 
     int s = size->text().toInt();
-
-    tile->moveTile(b, number,s);
+	tile->moveTile(b, number,s);
     //cout <<"number: " <<number << endl;
 }
+/**method for performing the AStar search algorithm.
+
+@pre out of place or heuristic radio button must be selected, and cheat must be clicked
+@post computes and prints out sequence of tiles to move in order to win
+@param none
+@return none
+*/
+
 void MainWindow:: AStar() {
     if (heur->isChecked()) {
         error->setText(" ");
@@ -59,9 +70,15 @@ void MainWindow:: AStar() {
         error->show();
     }
 }
-void MainWindow:: newGameClicked() {
-    //bool good;
+/**method for getting the board, number, and size to perform moveTile.
 
+@pre start button must be clicked because it is connected to the start button in constructor
+@post takes in user input to set up board and gives relevant errors if there are any
+@param none
+@return none
+*/
+void MainWindow:: newGameClicked() {
+scene->clear();
     int x = size->text().toInt();
     if (x!= 9 && x!=16) {
         error->setText("Please enter a valid size");
@@ -111,9 +128,16 @@ void MainWindow:: newGameClicked() {
         else {
             error->setText("Please enter a valid seed");
         }
-    }
+        }
+    
 }
+/**constructor for creating necessary objects going in the view of the GUI.
 
+@pre must have a main class creating mainwindow object to perform all actions
+@post creates buttons, timer, layouts, lineedits, and sets the geometry/texts
+@param none
+@return none
+*/
 MainWindow::MainWindow() {
     counter=0;
     //We need a scene and a view to do graphics in QT
@@ -137,7 +161,9 @@ MainWindow::MainWindow() {
 
     size = new QLineEdit(view);
     seed = new QLineEdit(view);
+    seed->setValidator(new QIntValidator(0, 10000, this));
     moves = new QLineEdit(view);
+    moves->setValidator(new QIntValidator(0, 10000, this));
     error = new QLineEdit(view);
     quit = new QPushButton(view);
     sequence = new QListView(view);
@@ -162,15 +188,30 @@ MainWindow::MainWindow() {
     formlayout->addRow(tr("Enter size: "), size);
     formlayout->addRow(tr("Enter seed: "), seed);
     formlayout->addRow(tr("Enter initial moves: "), moves);
-    formlayout->addRow(tr("Error"), error);
+    formlayout->addRow(tr("Console"), error);
+    QMessageBox *win = new QMessageBox();
 
 }
+/**method for showing everything within the view.
+
+@pre none
+@post displays everything in GUI
+@param none
+@return none
+*/
 void MainWindow::show() {
     //This is only called once by main. Timers don't start working until
     //we call start
     //This is how we get our view displayed.
     view->show();
 }
+/**destructor to delete appropriate values
+
+@pre none, internally called
+@post scene and view memory freed
+@param none
+@return none
+*/
 MainWindow::~MainWindow()
 {
     //timer->stop();
